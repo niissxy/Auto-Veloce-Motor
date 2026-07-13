@@ -167,21 +167,28 @@ async function run() {
 
   // Log incoming API calls to server console & Audit Log
   const addAuditLog = (action: string, user: string, details: string, ip = '127.0.0.1') => {
-    const db = getDatabase();
-    const log = {
-      id: `log-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
-      timestamp: new Date().toISOString(),
-      action,
-      user,
-      ip,
-      details
-    };
-    db.auditLogs.unshift(log);
-    // limit audit logs to last 100 entries
-    if (db.auditLogs.length > 100) {
-      db.auditLogs = db.auditLogs.slice(0, 100);
+    try {
+      const db = getDatabase();
+      if (!db.auditLogs || !Array.isArray(db.auditLogs)) {
+        db.auditLogs = [];
+      }
+      const log = {
+        id: `log-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`,
+        timestamp: new Date().toISOString(),
+        action,
+        user,
+        ip,
+        details
+      };
+      db.auditLogs.unshift(log);
+      // limit audit logs to last 100 entries
+      if (db.auditLogs.length > 100) {
+        db.auditLogs = db.auditLogs.slice(0, 100);
+      }
+      saveDatabase(db);
+    } catch (err) {
+      console.error('Audit logging failed, continuing execution gracefully:', err);
     }
-    saveDatabase(db);
   };
 
   // Helper to strip markdown code blocks from AI JSON response

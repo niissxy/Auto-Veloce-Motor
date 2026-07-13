@@ -62,6 +62,44 @@ export function AdminAuth({ onLoginSuccess, lang }: AdminAuthProps) {
     }
   }[lang === 'id' ? 'id' : 'en'];
 
+  const handleQuickLogin = async (selectedEmail: string, selectedPassword: string) => {
+    setEmail(selectedEmail);
+    setPassword(selectedPassword);
+    setError('');
+    setSuccess('');
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: selectedEmail, password: selectedPassword })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Autentikasi gagal.');
+      }
+
+      if (!data.isAdmin) {
+        throw new Error('Akses ditolak. Akun Anda tidak memiliki hak akses administrator.');
+      }
+
+      setSuccess(t.successLogin);
+      setTimeout(() => {
+        onLoginSuccess(data);
+        // Reset fields
+        setPassword('');
+        setEmail('');
+        setSuccess('');
+      }, 1000);
+    } catch (err: any) {
+      setError(err.message || 'Gagal terhubung ke server.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -155,15 +193,13 @@ export function AdminAuth({ onLoginSuccess, lang }: AdminAuthProps) {
       {/* Seed credentials helper */}
       {isLogin && (
         <div className="mb-6 p-3.5 bg-neutral-950 border border-neutral-800 rounded-xl">
-          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Akun Demo Seed (Klik untuk isi cepat):</p>
+          <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mb-2">Akun Demo Seed (Klik untuk masuk instan):</p>
           <div className="grid grid-cols-2 gap-2">
             <button
               type="button"
-              onClick={() => {
-                setEmail('admin@autoveloce.com');
-                setPassword('admin');
-              }}
-              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all"
+              disabled={loading}
+              onClick={() => handleQuickLogin('admin@autoveloce.com', 'admin')}
+              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all disabled:opacity-50"
             >
               <p className="text-xs font-black text-red-500">Super Admin</p>
               <p className="text-[10px] text-neutral-400 truncate">admin@autoveloce.com</p>
@@ -171,11 +207,9 @@ export function AdminAuth({ onLoginSuccess, lang }: AdminAuthProps) {
             </button>
             <button
               type="button"
-              onClick={() => {
-                setEmail('staff@autoveloce.com');
-                setPassword('staff123');
-              }}
-              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all"
+              disabled={loading}
+              onClick={() => handleQuickLogin('staff@autoveloce.com', 'staff123')}
+              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all disabled:opacity-50"
             >
               <p className="text-xs font-black text-amber-500">Staff Supervisor</p>
               <p className="text-[10px] text-neutral-400 truncate">staff@autoveloce.com</p>
@@ -183,11 +217,9 @@ export function AdminAuth({ onLoginSuccess, lang }: AdminAuthProps) {
             </button>
             <button
               type="button"
-              onClick={() => {
-                setEmail('sales@autoveloce.com');
-                setPassword('sales123');
-              }}
-              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all"
+              disabled={loading}
+              onClick={() => handleQuickLogin('sales@autoveloce.com', 'sales123')}
+              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all disabled:opacity-50"
             >
               <p className="text-xs font-black text-sky-500">Sales Specialist</p>
               <p className="text-[10px] text-neutral-400 truncate">sales@autoveloce.com</p>
@@ -195,11 +227,9 @@ export function AdminAuth({ onLoginSuccess, lang }: AdminAuthProps) {
             </button>
             <button
               type="button"
-              onClick={() => {
-                setEmail('finance@autoveloce.com');
-                setPassword('finance123');
-              }}
-              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all"
+              disabled={loading}
+              onClick={() => handleQuickLogin('finance@autoveloce.com', 'finance123')}
+              className="p-2 text-left bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded-lg transition-all disabled:opacity-50"
             >
               <p className="text-xs font-black text-emerald-500">Finance Admin</p>
               <p className="text-[10px] text-neutral-400 truncate">finance@autoveloce.com</p>

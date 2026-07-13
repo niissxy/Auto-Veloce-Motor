@@ -63,7 +63,23 @@ export default function App() {
   // Global States
   const [currentLang, setCurrentLang] = React.useState<SupportedLanguage>('id');
   const [theme, setTheme] = React.useState<'dark' | 'light'>('dark');
-  const [activeTab, setActiveTab] = React.useState<'home' | 'showroom' | 'rentals' | 'detailing' | 'trade-in' | 'ai-assistant' | 'admin' | 'profile'>('home');
+  const [activeTab, _setActiveTab] = React.useState<'home' | 'showroom' | 'rentals' | 'detailing' | 'trade-in' | 'ai-assistant' | 'admin' | 'profile'>('home');
+
+  const setActiveTab = React.useCallback((tabOrFn: any) => {
+    _setActiveTab((prev) => {
+      const nextTab = typeof tabOrFn === 'function' ? tabOrFn(prev) : tabOrFn;
+      if (nextTab === 'admin') {
+        if (window.location.pathname !== '/admin') {
+          window.history.pushState(null, '', '/admin');
+        }
+      } else {
+        if (window.location.pathname === '/admin') {
+          window.history.pushState(null, '', '/');
+        }
+      }
+      return nextTab;
+    });
+  }, []);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState<UserSession | null>(null);
   const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(false);
@@ -147,6 +163,27 @@ export default function App() {
     if (savedLang) {
       setCurrentLang(savedLang as SupportedLanguage);
     }
+
+    // Detect /admin on load or initial rendering
+    if (window.location.pathname === '/admin') {
+      _setActiveTab('admin');
+      setIsAdmin(true);
+    }
+
+    // Support browser back/forward navigation
+    const handlePopState = () => {
+      if (window.location.pathname === '/admin') {
+        _setActiveTab('admin');
+        setIsAdmin(true);
+      } else {
+        _setActiveTab('home');
+        setIsAdmin(false);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   const handleLoginSuccess = (user: UserSession) => {
