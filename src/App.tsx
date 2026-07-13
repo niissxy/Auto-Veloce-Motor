@@ -1315,37 +1315,179 @@ export default function App() {
       )}
 
       {/* Global Contact & Sticky Routing WhatsApp Footer */}
-      <footer className="bg-neutral-950 border-t border-semi border-neutral-900 pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="flex items-center justify-center gap-2">
-            <div className="p-1.5 bg-red-650 bg-red-600 rounded">
-              <Flame className="w-5 h-5 text-white" />
+      <footer className={`border-t transition-colors duration-200 pt-16 pb-8 ${
+        theme === 'dark' 
+          ? 'bg-neutral-950 border-neutral-900 text-neutral-400' 
+          : 'bg-slate-900 border-slate-800 text-slate-400'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 pb-12">
+            
+            {/* Column 1: Identity */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 bg-red-600 rounded">
+                  <Flame className="w-5 h-5 text-white" />
+                </div>
+                <span className="font-black text-lg text-white">AUTO <span className="text-red-500">VELOCE</span> MOTOR</span>
+              </div>
+              <p className="text-xs leading-relaxed">
+                {t.whatsAppRouting}
+              </p>
+              <div className="pt-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase rounded-full bg-red-500/10 border border-red-500/20 text-red-400">
+                  <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-ping"></span>
+                  Active Advisor Online
+                </span>
+              </div>
             </div>
-            <span className="font-black text-lg text-white">AUTO <span className="text-red-500">VELOCE</span> MOTOR</span>
+
+            {/* Column 2: Navigation */}
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-white mb-4">
+                {currentLang === 'id' ? 'Navigasi Utama' :
+                 currentLang === 'zh' ? '网站导航' :
+                 currentLang === 'ja' ? 'ナビゲーション' :
+                 currentLang === 'ar' ? 'التنقل المباشر' : 'Main Navigation'}
+              </h4>
+              <ul className="space-y-2.5 text-xs">
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('home')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {t.home || 'Beranda'}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('masalah-solusi')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {currentLang === 'id' ? 'Masalah & Solusi' : 'Problems & Solutions'}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('video-demo')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {currentLang === 'id' ? 'Video Demo' : 'Video Demo'}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('testimoni')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {t.reviews || 'Testimoni'}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Premium Services */}
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-white mb-4">
+                {currentLang === 'id' ? 'Layanan Premium' :
+                 currentLang === 'zh' ? '至尊服务' :
+                 currentLang === 'ja' ? 'プレミアムサービス' :
+                 currentLang === 'ar' ? 'الخدمات المتميزة' : 'Premium Services'}
+              </h4>
+              <ul className="space-y-2.5 text-xs">
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('showroom')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {t.listings || 'Stok Mobil'}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('rentals')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {t.rentals || 'Rental Mobil'}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('detailing')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {t.detailing || 'Services & Detailing'}
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => handleNavClick('trade-in')}
+                    className="hover:text-white hover:underline transition-all text-left"
+                  >
+                    {t.submitTradeIn || 'Tukar Tambah (Trade-In)'}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: Contact & Outlets */}
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-white mb-4">
+                {currentLang === 'id' ? 'Hubungi Kami' :
+                 currentLang === 'zh' ? '联系我们' :
+                 currentLang === 'ja' ? 'お問い合わせ' :
+                 currentLang === 'ar' ? 'اتصل بنا' : 'Contact Us'}
+              </h4>
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 mt-0.5 text-red-500 shrink-0" />
+                  <span>
+                    <strong className="text-neutral-200">Jakarta:</strong> Kebayoran Baru VIP Center
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 mt-0.5 text-red-500 shrink-0" />
+                  <span>
+                    <strong className="text-neutral-200">BSD City:</strong> Grand Showroom West Wing
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 mt-0.5 text-red-500 shrink-0" />
+                  <span>
+                    <strong className="text-neutral-200">Surabaya:</strong> HR Muhammad Prestige Hub
+                  </span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="w-3.5 h-3.5 mt-0.5 text-red-500 shrink-0" />
+                  <span>
+                    <strong className="text-neutral-200">Bandung:</strong> Dago Detailing & Service SPA
+                  </span>
+                </li>
+                <li className="pt-2 border-t border-neutral-900/60 mt-3">
+                  <button
+                    onClick={() => {
+                      setIsAdmin(true);
+                      setActiveTab('admin');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="text-[11px] font-semibold text-red-500 hover:text-red-400 hover:underline flex items-center gap-1.5"
+                  >
+                    <span>🔒 Staff Portal Admin</span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
-          <p className="text-xs text-neutral-500 max-w-lg mx-auto">
-            {t.whatsAppRouting}
-          </p>
-
-          <div className="flex items-center justify-center gap-2 text-xs text-neutral-400 font-bold uppercase tracking-wider">
-            <span>Jakarta Outlet</span>
-            <span className="text-neutral-600">•</span>
-            <span>BSD Showroom</span>
-            <span className="text-neutral-600">•</span>
-            <span>Surabaya Hub</span>
-            <span className="text-neutral-600">•</span>
-            <span>Bandung Service SPA</span>
+          <div className="border-t border-neutral-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-[11px] text-neutral-500 text-center md:text-left">
+              © 2026 Auto Veloce Motor Group. All rights reserved. Premium Automotive Experience, Smarter Buying Journey.
+            </p>
+            <p className="text-[10px] text-neutral-600 text-center md:text-right">
+              Dibuat oleh <a href="https://contech.id" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline hover:text-red-400 font-bold transition-all">Contech ID</a>
+            </p>
           </div>
-
-          <div className="h-px bg-neutral-900 my-4 max-w-sm mx-auto"></div>
-
-          <p className="text-[11px] text-neutral-500">
-            © 2026 Auto Veloce Motor Group. All rights reserved. Premium Automotive Experience, Smarter Buying Journey.
-          </p>
-          <p className="text-[10px] text-neutral-600">
-            Dibuat oleh <a href="https://contech.id" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:underline hover:text-red-400 font-bold transition-all">Contech ID</a>
-          </p>
         </div>
       </footer>
 
