@@ -891,6 +891,37 @@ Only return pure JSON.`,
     res.json(userSafe);
   });
 
+  // --- STATIC ASSETS FOR WEB PREVIEW & FAVICON ---
+
+  // Dynamic beautiful favicon serving
+  app.get('/favicon.svg', (req, res) => {
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="25" fill="#0c0c0e" />
+  <!-- Sleek sporty car profile contour line -->
+  <path d="M15 65 C25 65, 30 50, 45 42 C50 39, 65 39, 72 45 C80 52, 83 60, 88 65" fill="none" stroke="url(#glow)" stroke-width="6" stroke-linecap="round" />
+  <path d="M30 65 L40 65" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+  <path d="M60 65 L70 65" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+  <text x="50" y="83" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">VELOCE</text>
+</svg>`);
+  });
+
+  // Dynamic social preview image serving
+  app.get('/preview.jpg', (req, res) => {
+    const previewPath = path.join(__dirnameResolved, 'src/assets/images/auto_veloce_demo_1783578187191.jpg');
+    if (fs.existsSync(previewPath)) {
+      res.sendFile(previewPath);
+    } else {
+      res.status(404).send('Preview image not found');
+    }
+  });
+
   // --- DEV / PRODUCTION INTEGRATION ---
 
   let vite: any;
