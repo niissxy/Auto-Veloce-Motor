@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#b91c1c" />
+      <stop offset="60%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#facc15" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded Square Background with premium dark finish -->
+  <rect width="512" height="512" rx="140" fill="url(#bgGrad)" />
+  <!-- Glossy Red Border Accent -->
+  <rect x="20" y="20" width="472" height="472" rx="120" fill="none" stroke="#dc2626" stroke-width="12" stroke-opacity="0.4" />
+  
+  <!-- Stylized Flame Centered and Scaled -->
+  <g transform="translate(112, 85) scale(2.4)">
+    <!-- Outer Flame -->
+    <path d="M85 2 C85 2 115 45 115 75 C115 110 90 140 55 140 C20 140 5 110 5 75 C5 45 25 25 35 15 C35 35 45 50 55 50 C65 50 75 35 75 15 C75 25 85 2 85 2 Z" fill="url(#flameGrad)" />
+    <!-- Inner Glow Detail -->
+    <path d="M70 45 C70 45 88 72 88 92 C88 112 72 125 55 125 C38 125 28 112 28 92 C28 72 45 60 48 55 C48 68 53 78 58 78 C63 78 70 65 70 45 Z" fill="#fef08a" opacity="0.95" />
+  </g>
+</svg>
