@@ -1,0 +1,8 @@
+{
+  "name": "Auto Veloce Motor Hub",
+  "description": "Eksklusif VIP Showroom, Rental, Detailing, dan Trade-In Portal terintegrasi dengan Sales Advisor Asisten AI Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

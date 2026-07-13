@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* Base smooth transition for switching themes */
+* {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Light theme overrides */
+.light-theme {
+  background-color: #f8fafc !important; /* slate-50 */
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Background overrides - keeping hero and mock media players in dark/cinematic mode */
+.light-theme .bg-neutral-950:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-950\/90:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-950\/80:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-950\/50:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-950\/40:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  background-color: #f1f5f9 !important; /* slate-100 */
+}
+
+.light-theme .bg-neutral-900:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-900\/60:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-900\/50:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-900\/40:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-900\/30:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  background-color: #ffffff !important; /* white */
+}
+
+.light-theme .bg-neutral-800:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-850:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-neutral-900\/10:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  background-color: #f1f5f9 !important; /* slate-100 */
+}
+
+.light-theme .bg-black:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-black\/40:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  background-color: #f8fafc !important;
+}
+
+/* Disable dark premium gradients in light mode and fallback to solid white, EXCEPT for the immersive hero banner and video players */
+.light-theme .bg-gradient-to-r:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-gradient-to-br:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-gradient-to-tr:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-gradient-to-tl:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-gradient-to-bl:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-gradient-to-t:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .bg-gradient-to-b:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  background-image: none !important;
+  background-color: #ffffff !important;
+}
+
+/* Specifically adjust dark gradients that should become clean light slate/white card panels (Notice: faq-section is removed here to prevent shadows) */
+.light-theme #ai-quick-matcher > div,
+.light-theme #why-trust-factors > div > div,
+.light-theme #testimoni-section > div > div,
+.light-theme #cta-section > div {
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Border overrides */
+.light-theme .border-neutral-900:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .border-neutral-800:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .border-neutral-850:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .border-neutral-800\/20:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .border-neutral-700:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  border-color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Text color overrides - preserving white/neutral text readability on dark hero/video elements */
+.light-theme .text-white:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  color: #0f172a !important; /* slate-900 */
+}
+
+.light-theme .text-neutral-50:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .text-neutral-100:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *),
+.light-theme .text-neutral-200:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  color: #1e293b !important; /* slate-800 */
+}
+
+.light-theme .text-neutral-300:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  color: #334155 !important; /* slate-700 */
+}
+
+.light-theme .text-neutral-400:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  color: #475569 !important; /* slate-600 */
+}
+
+.light-theme .text-neutral-500:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *) {
+  color: #64748b !important; /* slate-500 */
+}
+
+/* Hover text adjustments */
+.light-theme .hover\:text-white:not(#hero-slider, #hero-slider *, #mock-video-player, #mock-video-player *):hover {
+  color: #0f172a !important;
+}
+
+/* Accent color contrast fixes for readability in light mode */
+.light-theme .text-emerald-400 {
+  color: #047857 !important; /* emerald-700 for accessible WCAG contrast */
+}
+
+.light-theme .text-emerald-300 {
+  color: #059669 !important; /* emerald-600 */
+}
+
+.light-theme .text-emerald-500 {
+  color: #047857 !important;
+}
+
+/* Golden/Amber warning & AI badges text alignment for high-contrast on light background */
+.light-theme .text-\[\#fbbf24\] {
+  color: #b45309 !important; /* amber-700 */
+}
+
+.light-theme .text-amber-500 {
+  color: #d97706 !important; /* amber-600 */
+}
+
+/* Hovers */
+.light-theme .hover\:bg-neutral-900:hover {
+  background-color: #f8fafc !important;
+}
+.light-theme .hover\:bg-neutral-850:hover {
+  background-color: #e2e8f0 !important;
+}
+
+/* Inputs, Select, Textareas, Options */
+.light-theme input,
+.light-theme select,
+.light-theme textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light-theme option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.light-theme input::placeholder,
+.light-theme textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Maintain brand visual identity red color contrast in light mode */
+.light-theme .text-red-500 {
+  color: #dc2626 !important;
+}
+
+.light-theme .bg-red-500\/10 {
+  background-color: #fee2e2 !important; /* red-100 */
+}
+
+.light-theme .border-red-500\/20 {
+  border-color: #fca5a5 !important; /* red-300 */
+}
+
+/* Specific component fixes for FAQ & AI consoles */
+.light-theme .bg-neutral-950\/20 {
+  background-color: #f8fafc !important;
+  border-top-color: #cbd5e1 !important;
+}
+
+/* Interactive custom adjustments */
+.light-theme #nav-header {
+  background-color: rgba(248, 250, 252, 0.9) !important;
+  border-bottom-color: #cbd5e1 !important;
+}
+
+/* Keep hero slider 100% dark and cinematic regardless of light theme */
+.light-theme #hero-slider,
+.light-theme #hero-slider * {
+  color: #ffffff !important;
+}
+.light-theme #hero-slider .text-red-500 {
+  color: #ef4444 !important;
+}
+.light-theme #hero-slider .bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+.light-theme #hero-slider .border-red-500\/20 {
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+.light-theme #hero-slider .bg-neutral-900 {
+  background-color: #171717 !important;
+}
+.light-theme #hero-slider .border-neutral-800 {
+  border-color: #262626 !important;
+}
+.light-theme #hero-slider .text-neutral-300 {
+  color: #d4d4d8 !important;
+}
+.light-theme #hero-slider .text-neutral-400 {
+  color: #a3a3a3 !important;
+}
+
+/* Remove shadow on Tanya Jawab / FAQ items */
+#faq-section,
+#faq-section *,
+.light-theme #faq-section,
+.light-theme #faq-section * {
+  box-shadow: none !important;
+}
