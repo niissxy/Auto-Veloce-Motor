@@ -355,7 +355,7 @@ export default function App() {
                 </div>
 
                 {/* Floating headline */}
-                <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-4 sm:space-y-6">
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 sm:space-y-6">
                   <span className="text-[10px] sm:text-xs font-black tracking-widest text-red-500 uppercase bg-red-500/10 border border-red-500/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full inline-block animate-pulse">
                     🏢 OFFICIAL AUTO VELOCE MOTOR HUB
                   </span>

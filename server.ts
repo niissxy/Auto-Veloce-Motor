@@ -8,10 +8,7 @@ import { GoogleGenAI } from '@google/genai';
 
 dotenv.config();
 
-const __dirnameResolved = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
-
-// Initialize database file path
-const DB_FILE = path.join(__dirnameResolved, 'db-store.json');
+const DB_FILE = path.join(process.cwd(), 'db-store.json');
 
 // Interfaces for local persistence
 import {
@@ -921,7 +918,7 @@ Only return pure JSON.`,
 
   // Dynamic social preview image serving
   app.get('/preview.jpg', (req, res) => {
-    const previewPath = path.join(__dirnameResolved, 'src/assets/images/auto_veloce_demo_1783578187191.jpg');
+    const previewPath = path.join(process.cwd(), 'src/assets/images/auto_veloce_demo_1783578187191.jpg');
     if (fs.existsSync(previewPath)) {
       res.sendFile(previewPath);
     } else {
@@ -941,7 +938,7 @@ Only return pure JSON.`,
     app.use(vite.middlewares);
   } else {
     // Serve static files in production
-    app.use(express.static(path.join(__dirnameResolved, 'dist')));
+    app.use(express.static(path.join(process.cwd(), 'dist')));
   }
 
   // Handle SPA routing - delegate all unmatched routes to index.html
@@ -953,10 +950,10 @@ Only return pure JSON.`,
     try {
       let template: string;
       if (process.env.NODE_ENV !== 'production') {
-        template = fs.readFileSync(path.resolve(__dirnameResolved, 'index.html'), 'utf-8');
+        template = fs.readFileSync(path.resolve(process.cwd(), 'index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
       } else {
-        template = fs.readFileSync(path.resolve(__dirnameResolved, 'dist/index.html'), 'utf-8');
+        template = fs.readFileSync(path.resolve(process.cwd(), 'dist/index.html'), 'utf-8');
       }
       res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
     } catch (e) {

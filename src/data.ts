@@ -175,6 +175,17 @@ export const INITIAL_RENTAL_VEHICLES: RentalVehicle[] = [
     image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=800',
     branchName: 'Auto Veloce Bandung Center',
     specs: ['11 VIP Seats', 'Luggage Compartment Wide', 'Full Karaoke Sound System', 'Charging Ports at seats']
+  },
+  {
+    id: 'r-04',
+    name: 'Mercedes-Benz S-Class S450 AMG Line',
+    type: 'Luxury',
+    dailyPrice: 5500000,
+    withDriverPrice: 6500000,
+    deposit: 10000000,
+    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=800',
+    branchName: 'Auto Veloce Jakarta Selatan',
+    specs: ['5 Seats', 'Exclusive Nappa Leather', 'Active Air Suspension', 'Burmester Surround Sound']
   }
 ];
 
@@ -225,7 +236,8 @@ export const INITIAL_PROMOS: Promo[] = [
 export const INITIAL_LEASING_PARTNERS: LeasingPartner[] = [
   { id: 'lp-01', name: 'BCA Finance Syariah/Flat', interestRate: '3.1% - 4.25%', logoUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=80' },
   { id: 'lp-02', name: 'Mandiri Utama Finance', interestRate: '3.4% - 4.8%', logoUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=80' },
-  { id: 'lp-03', name: 'Maybank Syariah Indonesia', interestRate: '3.2% - 4.5%', logoUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=80' }
+  { id: 'lp-03', name: 'Maybank Syariah Indonesia', interestRate: '3.2% - 4.5%', logoUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=80' },
+  { id: 'lp-04', name: 'CIMB Niaga Auto Finance', interestRate: '3.3% - 4.6%', logoUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&q=80&w=80' }
 ];
 
 export const INITIAL_BLOG_POSTS: BlogPost[] = [
